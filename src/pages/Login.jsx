@@ -10,9 +10,9 @@ export default function Login() {
 
     // </Container>
     <Box sx={{ border: "1px solid #978f8f", display: "flex", justifyContent: "center", alignItems: "center", height: "100vh", width: "100vw", backgroundColor: "#000000de", boxSizing: "border-box" }}>
-      <Box sx={{ border: "2px solid #978f8f", borderRadius: "20px", width: "30vw", height: "55vh", p: 3 }}>
+      <Box sx={{ border: "2px solid #978f8f", borderRadius: "20px", width:{lg:"30vw", sm:'50vw', xs:'60vw' } , p: 3 }}>
         <form onSubmit={handleSubmit((data) => console.log(data))}>
-          <Typography variant="h3" gutterBottom color="#bdbdbd" sx={{ textAlign: "center" }}>
+          <Typography variant="h3" gutterBottom color="#bdbdbd" sx={{ textAlign: "center", fontSize:{xs:'30px', sm:'35px', lg:'48px'} }}>
             Log In
           </Typography>
           <Typography variant="subtitle1" color="#bdbdbd" gutterBottom>
