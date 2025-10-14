@@ -1,18 +1,18 @@
 import { useForm, Controller } from "react-hook-form";
 import { TextField, Button, Container, Box, Typography } from "@mui/material";
-import { useState } from "react";
 
 export default function Login() {
-  const { watch, control, handleSubmit } = useForm({ defaultValues: { userName: "", password: "" } });
+  const { control, handleSubmit } = useForm({ defaultValues: { userName: "", password: "" } });
+
+  const onSubmit = (userData) => {
+    console.log(userData);
+  };
 
   return (
-    // <Container sx={{ border: "1px solid #978f8f", borderRadius: "20px", display: "flex", justifyContent: "center", alignItems: "center", height: "100vh", width: "100%", backgroundColor: "#000000de" }}>
-
-    // </Container>
     <Box sx={{ border: "1px solid #978f8f", display: "flex", justifyContent: "center", alignItems: "center", height: "100vh", width: "100vw", backgroundColor: "#000000de", boxSizing: "border-box" }}>
-      <Box sx={{ border: "2px solid #978f8f", borderRadius: "20px", width:{lg:"30vw", sm:'50vw', xs:'60vw' } , p: 3 }}>
-        <form onSubmit={handleSubmit((data) => console.log(data))}>
-          <Typography variant="h3" gutterBottom color="#bdbdbd" sx={{ textAlign: "center", fontSize:{xs:'30px', sm:'35px', lg:'48px'} }}>
+      <Box sx={{ border: "2px solid #978f8f", borderRadius: "20px", width: { lg: "30vw", sm: "50vw", xs: "60vw" }, p: 3 }}>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Typography variant="h3" gutterBottom color="#bdbdbd" sx={{ textAlign: "center", fontSize: { xs: "30px", sm: "35px", lg: "48px" } }}>
             Log In
           </Typography>
           <Typography variant="subtitle1" color="#bdbdbd" gutterBottom>
