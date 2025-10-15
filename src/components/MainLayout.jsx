@@ -1,5 +1,7 @@
+import updateLocalStorage from "../utils/updateLocalStorage";
+
 import { useState } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import Container from "@mui/material/Container";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -9,19 +11,22 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { Menu, MenuItem } from "@mui/material";
 
-function MainLayout() {
+function MainLayout({ sessionData }) {
   const [anchorEl, setAnchorEl] = useState(null);
+  const navigate = useNavigate();
   const handleOpenMenu = (event) => {
     setAnchorEl(event.currentTarget); // запоминаем, где кликнули
   };
   const handleCloseMenu = () => {
     setAnchorEl(null); // закрываем меню
+    updateLocalStorage(sessionData);
+    navigate("login", { replace: true });
   };
   const open = Boolean(anchorEl); // флаг — открыто ли меню
   return (
     <Container maxWidth="lg" sx={{ outline: "5px solid red" }}>
       <Box>
-        <AppBar position="static" sx={{width:'100%'}}>
+        <AppBar position="static" sx={{ width: "100%" }}>
           <Toolbar sx={{ justifyContent: "flex-end" }}>
             <Box sx={{ flexGrow: 1 }}>
               <Typography variant="h4">My app</Typography>

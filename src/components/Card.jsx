@@ -4,7 +4,7 @@ function ProductCard({ cardName, description, src }) {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea>
-        <CardMedia component="img" height="200" image={src} alt={description} />
+        <CardMedia component="img" sx={{ height: { xs: 50, sm: 150, lg: 200 } }} image={src} alt={description} />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             {cardName}

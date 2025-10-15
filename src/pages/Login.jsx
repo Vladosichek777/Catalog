@@ -2,7 +2,7 @@ import { useForm, Controller } from "react-hook-form";
 import { TextField, Button, Box, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-export default function Login() {
+export default function Login({ sessionData, setSessionData }) {
   console.log("Login render");
   const { control, handleSubmit } = useForm({ defaultValues: { userName: "", password: "" } });
   const navigate = useNavigate();
@@ -18,11 +18,12 @@ export default function Login() {
     if (exist) {
       switch (entryData.userName) {
         case "admin":
-          localStorage.setItem("userData", JSON.stringify({ activeUser: "admin" }));
+          localStorage.setItem("sessionData", JSON.stringify({ ...sessionData, activeUser: "admin" }));
           navigate("/admin", { replace: true });
           break;
+          
         case "user":
-          localStorage.setItem("userData", JSON.stringify({ activeUser: "user" }));
+          localStorage.setItem("sessionData", JSON.stringify({ ...sessionData, activeUser: "user" }));
           navigate("/user", { replace: true });
           break;
         default:
