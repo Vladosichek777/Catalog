@@ -19,9 +19,9 @@ function MainLayout() {
   };
   const open = Boolean(anchorEl); // флаг — открыто ли меню
   return (
-    <Container maxWidth="lg" sx={{ border: "1px solid red" }}>
+    <Container maxWidth="lg" sx={{ outline: "5px solid red" }}>
       <Box>
-        <AppBar position="fixed">
+        <AppBar position="static" sx={{width:'100%'}}>
           <Toolbar sx={{ justifyContent: "flex-end" }}>
             <Box sx={{ flexGrow: 1 }}>
               <Typography variant="h4">My app</Typography>

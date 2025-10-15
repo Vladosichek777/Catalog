@@ -1,0 +1,172 @@
+[
+  {
+    "name": "EcoSmart Headphones",
+    "description": "Wireless over-ear headphones with noise-canceling feature and 30-hour battery life.",
+    "src": "https://picsum.photos/id/237/200/300"
+  },
+  {
+    "name": "SleekSmartphone Pro",
+    "description": "Latest smartphone with 6.5-inch OLED display and 128GB storage.",
+    "src": "https://picsum.photos/id/238/200/300"
+  },
+  {
+    "name": "UltraClean Blender",
+    "description": "High-speed blender with self-cleaning function and 1.5L capacity.",
+    "src": "https://picsum.photos/id/239/200/300"
+  },
+  {
+    "name": "SmartWatch X",
+    "description": "Fitness tracker with heart rate monitor and sleep tracking.",
+    "src": "https://picsum.photos/id/240/200/300"
+  },
+  {
+    "name": "PowerPlus Charger",
+    "description": "Fast-charging power bank with 10000mAh capacity.",
+    "src": "https://picsum.photos/id/241/200/300"
+  },
+  {
+    "name": "CleanSweep Robot",
+    "description": "Automatic vacuum cleaner with smart mapping and scheduling.",
+    "src": "https://picsum.photos/id/242/200/300"
+  },
+  {
+    "name": "AirPure Humidifier",
+    "description": "Ultrasonic humidifier with 3 mist levels and night light.",
+    "src": "https://picsum.photos/id/243/200/300"
+  },
+  {
+    "name": "HomeFit Treadmill",
+    "description": "Compact treadmill with adjustable incline and built-in speakers.",
+    "src": "https://picsum.photos/id/244/200/300"
+  },
+  {
+    "name": "SmartLamp 360",
+    "description": "Adjustable LED desk lamp with wireless charging base.",
+    "src": "https://picsum.photos/id/245/200/300"
+  },
+  {
+    "name": "QuickCook Air Fryer",
+    "description": "Healthy cooking air fryer with 5 preset programs.",
+    "src": "https://picsum.photos/id/246/200/300"
+  },
+  {
+    "name": "SoundWave Speakers",
+    "description": "Portable Bluetooth speakers with 12-hour battery life.",
+    "src": "https://picsum.photos/id/247/200/300"
+  },
+  {
+    "name": "SmartLock Pro",
+    "description": "Keyless entry smart lock with fingerprint recognition.",
+    "src": "https://picsum.photos/id/248/200/300"
+  },
+  {
+    "name": "UltraDry Dehumidifier",
+    "description": "Energy-efficient dehumidifier with 2L water tank.",
+    "src": "https://picsum.photos/id/249/200/300"
+  },
+  {
+    "name": "PowerBoost Surge Protector",
+    "description": "Surge protector with 10 outlets and 2 USB ports.",
+    "src": "https://picsum.photos/id/250/200/300"
+  },
+  {
+    "name": "SmartThermo Heater",
+    "description": "Portable heater with Wi-Fi control and 3 heat settings.",
+    "src": "https://picsum.photos/id/251/200/300"
+  },
+  {
+    "name": "CleanJet Air Purifier",
+    "description": "HEPA air purifier with 3-stage filtration system.",
+    "src": "https://picsum.photos/id/252/200/300"
+  },
+  {
+    "name": "SmartCook Instant Pot",
+    "description": "Multi-function pressure cooker with 7 cooking presets.",
+    "src": "https://picsum.photos/id/253/200/300"
+  },
+  {
+    "name": "PowerMax Cordless Drill",
+    "description": "18V cordless drill with 2-speed gearbox and LED light.",
+    "src": "https://picsum.photos/id/254/200/300"
+  },
+  {
+    "name": "SmartCam Security Camera",
+    "description": "1080p HD security camera with motion detection and night vision.",
+    "src": "https://picsum.photos/id/255/200/300"
+  },
+  {
+    "name": "QuickCharge Wireless Pad",
+    "description": "Fast wireless charging pad compatible with Qi-enabled devices.",
+    "src": "https://picsum.photos/id/256/200/300"
+  },
+  {
+    "name": "SmartScale Body Analyzer",
+    "description": "Bluetooth body scale with BMI and body fat percentage tracking.",
+    "src": "https://picsum.photos/id/257/200/300"
+  },
+  {
+    "name": "UltraClean Steam Mop",
+    "description": "Steam mop with swivel head and washable microfiber pads.",
+    "src": "https://picsum.photos/id/258/200/300"
+  },
+  {
+    "name": "SmartPlug Wi-Fi Outlet",
+    "description": "Wi-Fi enabled smart plug with energy monitoring.",
+    "src": "https://picsum.photos/id/259/200/300"
+  },
+  {
+    "name": "PowerLite LED Flashlight",
+    "description": "Rechargeable LED flashlight with 5 brightness levels.",
+    "src": "https://picsum.photos/id/260/200/300"
+  },
+  {
+    "name": "SmartMirror Touchscreen",
+    "description": "Touchscreen mirror with built-in Bluetooth speakers.",
+    "src": "https://picsum.photos/id/261/200/300"
+  },
+  {
+    "name": "UltraClean Carpet Cleaner",
+    "description": "Carpet cleaner with dual tank system and 5 cleaning modes.",
+    "src": "https://picsum.photos/id/262/200/300"
+  },
+  {
+    "name": "SmartPlates Portion Control",
+    "description": "Smart plates with built-in scale and app integration.",
+    "src": "https://picsum.photos/id/263/200/300"
+  },
+  {
+    "name": "PowerMax Jump Starter",
+    "description": "Portable jump starter with 12V car battery support.",
+    "src": "https://picsum.photos/id/264/200/300"
+  },
+  {
+    "name": "SmartGarden Indoor Planter",
+    "description": "Self-watering indoor planter with LED grow lights.",
+    "src": "https://picsum.photos/id/265/200/300"
+  },
+  {
+    "name": "UltraClean Window Vacuum",
+    "description": "Cordless window vacuum with streak-free cleaning.",
+    "src": "https://picsum.photos/id/266/200/300"
+  },
+  {
+    "name": "SmartPet Feeder",
+    "description": "Automatic pet feeder with Wi-Fi connectivity and camera.",
+    "src": "https://picsum.photos/id/267/200/300"
+  },
+  {
+    "name": "PowerBoost Electric Scooter",
+    "description": "Foldable electric scooter with 350W motor and 25km range.",
+    "src": "https://picsum.photos/id/268/200/300"
+  },
+  {
+    "name": "SmartBike Tracker",
+    "description": "GPS bike tracker with real-time location sharing.",
+    "src": "https://picsum.photos/id/269/200/300"
+  },
+  {
+    "name": "UltraClean Pressure Washer",
+    "description": "High-pressure washer with 2000PSI and adjustable nozzle.",
+    "src": "https://picsum.photos/id/270/200/300"
+  }
+]

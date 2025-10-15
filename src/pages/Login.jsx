@@ -1,11 +1,36 @@
 import { useForm, Controller } from "react-hook-form";
-import { TextField, Button, Container, Box, Typography } from "@mui/material";
+import { TextField, Button, Box, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
+  console.log("Login render");
   const { control, handleSubmit } = useForm({ defaultValues: { userName: "", password: "" } });
+  const navigate = useNavigate();
 
-  const onSubmit = (userData) => {
-    console.log(userData);
+  const defaultEntryValue = [
+    { name: "admin", password: "12345" },
+    { name: "user", password: "67890" },
+  ];
+
+  const onSubmit = (entryData) => {
+    console.log("inside submit function");
+    const exist = defaultEntryValue.some((user) => user.name === entryData.userName && user.password === entryData.password);
+    if (exist) {
+      switch (entryData.userName) {
+        case "admin":
+          localStorage.setItem("userData", JSON.stringify({ activeUser: "admin" }));
+          navigate("/admin", { replace: true });
+          break;
+        case "user":
+          localStorage.setItem("userData", JSON.stringify({ activeUser: "user" }));
+          navigate("/user", { replace: true });
+          break;
+        default:
+          break;
+      }
+    } else {
+      alert("check your data");
+    }
   };
 
   return (
