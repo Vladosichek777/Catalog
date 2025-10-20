@@ -1,5 +1,3 @@
-import updateLocalStorage from "../utils/updateLocalStorage";
-
 import { useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import Container from "@mui/material/Container";
@@ -11,16 +9,19 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { Menu, MenuItem } from "@mui/material";
 
-function MainLayout({ sessionData }) {
+function MainLayout({ sessionData, setSessionData }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const navigate = useNavigate();
   const handleOpenMenu = (event) => {
     setAnchorEl(event.currentTarget); // запоминаем, где кликнули
   };
+  const handleLogOutClick = () => {
+    localStorage.setItem("sessionData", JSON.stringify({ ...sessionData, activeUser: "" }));
+    setSessionData({ ...sessionData, activeUser: "" });
+    navigate("login", { replace: true });
+  };
   const handleCloseMenu = () => {
     setAnchorEl(null); // закрываем меню
-    updateLocalStorage(sessionData);
-    navigate("login", { replace: true });
   };
   const open = Boolean(anchorEl); // флаг — открыто ли меню
   return (
@@ -54,7 +55,7 @@ function MainLayout({ sessionData }) {
               }}
               disableScrollLock={true}
             >
-              <MenuItem onClick={handleCloseMenu}>Log out</MenuItem>
+              <MenuItem onClick={handleLogOutClick}>Log out</MenuItem>
             </Menu>
           </Toolbar>
         </AppBar>

@@ -1,6 +1,5 @@
 import { Button, Box, Typography, Stack } from "@mui/material";
 import ProductCard from "../components/Card";
-import products from "../data/products.json";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y, Grid } from "swiper/modules";
 import "swiper/css";
@@ -8,9 +7,8 @@ import "swiper/css/grid";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-function MainPage() {
-  const isAdmin = JSON.parse(localStorage.getItem("sessionData")).activeUser === "admin";
-  console.log(isAdmin);
+function MainPage({ sessionData }) {
+  const isAdmin = sessionData.activeUser === "admin";
   return (
     <Box sx={{ border: "2px solid blue" }}>
       {isAdmin && (
@@ -30,7 +28,7 @@ function MainPage() {
           pagination={{ clickable: true }}
           scrollbar={{ draggable: true }}
         >
-          {products.map((card, id) => (
+          {sessionData.avaliableProducts.map((card, id) => (
             <SwiperSlide>
               <ProductCard key={id} cardName={card.name} description={card.description} src={card.src} />
             </SwiperSlide>

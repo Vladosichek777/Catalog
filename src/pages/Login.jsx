@@ -1,11 +1,13 @@
 import { useForm, Controller } from "react-hook-form";
 import { TextField, Button, Box, Typography } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function Login({ sessionData, setSessionData }) {
-  console.log("Login render");
   const { control, handleSubmit } = useForm({ defaultValues: { userName: "", password: "" } });
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const defaultEntryValue = [
     { name: "admin", password: "12345" },
@@ -13,24 +15,23 @@ export default function Login({ sessionData, setSessionData }) {
   ];
 
   const onSubmit = (entryData) => {
-    console.log("inside submit function");
-    const exist = defaultEntryValue.some((user) => user.name === entryData.userName && user.password === entryData.password);
-    if (exist) {
-      switch (entryData.userName) {
-        case "admin":
-          localStorage.setItem("sessionData", JSON.stringify({ ...sessionData, activeUser: "admin" }));
-          navigate("/admin", { replace: true });
-          break;
-          
-        case "user":
-          localStorage.setItem("sessionData", JSON.stringify({ ...sessionData, activeUser: "user" }));
-          navigate("/user", { replace: true });
-          break;
-        default:
-          break;
-      }
-    } else {
+    const isUserExist = defaultEntryValue.some((user) => user.name === entryData.userName && user.password === entryData.password);
+    const localStorageData = JSON.parse(localStorage.getItem("sessionData"));
+
+    if (!isUserExist) {
       alert("check your data");
+      return;
+    }
+    
+    const role = entryData.userName;
+    const updatedData = localStorageData ? { ...localStorageData, activeUser: role } : { ...sessionData, activeUser: role };
+    localStorage.setItem("sessionData", JSON.stringify(updatedData));
+    setSessionData(updatedData);
+
+    if (from === "/" || from === "/login") {
+      navigate(`/${role}`, { replace: true });
+    } else {
+      navigate(from, { replace: true });
     }
   };
 
