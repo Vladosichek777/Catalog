@@ -1,7 +1,7 @@
 import handleDeleteCard from "../utils/handleDeleteCard";
 import { Button, Typography, Card, CardContent, CardMedia, CardActionArea, CardActions } from "@mui/material";
 
-function ProductCard({ cardName, description, src, isAdmin }) {
+function ProductCard({ cardName, description, src, isAdmin, sessionData, setSessionData }) {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea>
@@ -21,7 +21,7 @@ function ProductCard({ cardName, description, src, isAdmin }) {
             in basket
           </Button>
         ) : (
-          <Button onClick={() => handleDeleteCard(cardName)} size="small" color="error" variant="contained">
+          <Button onClick={() => handleDeleteCard(cardName, sessionData, setSessionData)} size="small" color="error" variant="contained">
             Delete Card
           </Button>
         )}
