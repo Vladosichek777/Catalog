@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { Routes, Route, useLocation, useNavigate, Navigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/Login";
 import MainLayout from "./components/MainLayout";
 import MainPage from "./pages/MainPage";
@@ -17,19 +17,22 @@ function App() {
     avaliableProducts: [...products],
     basket: [],
   });
-  useNavigateFirstEntry(sessionData, setSessionData);
+  const isAdmin = sessionData.activeUser === "admin";
+  useNavigateFirstEntry(setSessionData);
 
   console.log(sessionData);
   console.log("app render ");
   return (
     <Routes>
       <Route path="login" element={<Login sessionData={sessionData} setSessionData={setSessionData} />} />
+
       <Route element={<MainLayout sessionData={sessionData} setSessionData={setSessionData} />}>
         <Route element={<ProtectedRole role="admin" activeUser={activeUser} />}>
-          <Route path="admin" element={<MainPage sessionData={sessionData} />} />
+          <Route path="admin" element={<MainPage sessionData={sessionData} setSessionData={setSessionData} isAdmin={isAdmin} />} />
         </Route>
+
         <Route element={<ProtectedRole role="user" activeUser={activeUser} />}>
-          <Route path="user" element={<MainPage sessionData={sessionData} />} />
+          <Route path="user" element={<MainPage sessionData={sessionData} isAdmin={isAdmin} />} />
         </Route>
       </Route>
       <Route path="*" element={<Navigate to="/login" replace />} />

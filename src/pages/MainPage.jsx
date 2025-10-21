@@ -1,21 +1,31 @@
-import { Button, Box, Typography, Stack } from "@mui/material";
-import ProductCard from "../components/Card";
+import NewCardPopUp from "../components/NewCardPopUp";
+import ProductCard from "../components/ProductCard";
+import { useState } from "react";
+import { Button, Box } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Scrollbar, A11y, Grid } from "swiper/modules";
+import { Pagination, Grid } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/grid";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-function MainPage({ sessionData }) {
-  const isAdmin = sessionData.activeUser === "admin";
+function MainPage({ sessionData, setSessionData, isAdmin }) {
+  const [openModalNewCard, setOpenModalNewCard] = useState(false);
+  const handleCloseModalNewCard = () => {
+    setOpenModalNewCard(false);
+  };
+  const handleOpenModalNewCard = () => {
+    setOpenModalNewCard(true);
+  };
+
   return (
     <Box sx={{ border: "2px solid blue" }}>
       {isAdmin && (
-        <Button variant="contained" size="large" color="success">
+        <Button onClick={handleOpenModalNewCard} variant="contained" size="large" color="success">
           Add new Card
         </Button>
       )}
+      <NewCardPopUp open={openModalNewCard} close={handleCloseModalNewCard} sessionData={sessionData} setSessionData={setSessionData} />
       <Box sx={{ border: "2px solid orange", mt: 5 }}>
         <Swiper
           // install Swiper modules
@@ -30,7 +40,7 @@ function MainPage({ sessionData }) {
         >
           {sessionData.avaliableProducts.map((card, id) => (
             <SwiperSlide>
-              <ProductCard key={id} cardName={card.name} description={card.description} src={card.src} />
+              <ProductCard key={id} cardName={card.name} description={card.description} src={card.src} isAdmin={isAdmin} />
             </SwiperSlide>
           ))}
         </Swiper>

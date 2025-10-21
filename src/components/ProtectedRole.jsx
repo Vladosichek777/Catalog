@@ -13,3 +13,4 @@ function ProtectedRole({ role, activeUser }) {
   return <Outlet />;
 }
 export default ProtectedRole;
+

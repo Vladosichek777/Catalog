@@ -12,18 +12,20 @@ import { Menu, MenuItem } from "@mui/material";
 function MainLayout({ sessionData, setSessionData }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const navigate = useNavigate();
+  const open = Boolean(anchorEl); // флаг — открыто ли меню
+
   const handleOpenMenu = (event) => {
-    setAnchorEl(event.currentTarget); // запоминаем, где кликнули
+    setAnchorEl(event.currentTarget);
+  };
+  const handleCloseMenu = () => {
+    setAnchorEl(null); // закрываем меню
   };
   const handleLogOutClick = () => {
     localStorage.setItem("sessionData", JSON.stringify({ ...sessionData, activeUser: "" }));
     setSessionData({ ...sessionData, activeUser: "" });
     navigate("login", { replace: true });
   };
-  const handleCloseMenu = () => {
-    setAnchorEl(null); // закрываем меню
-  };
-  const open = Boolean(anchorEl); // флаг — открыто ли меню
+
   return (
     <Container maxWidth="lg" sx={{ outline: "5px solid red" }}>
       <Box>

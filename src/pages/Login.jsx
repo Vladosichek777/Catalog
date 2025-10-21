@@ -1,7 +1,6 @@
 import { useForm, Controller } from "react-hook-form";
 import { TextField, Button, Box, Typography } from "@mui/material";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useEffect } from "react";
 
 export default function Login({ sessionData, setSessionData }) {
   const { control, handleSubmit } = useForm({ defaultValues: { userName: "", password: "" } });
@@ -22,7 +21,7 @@ export default function Login({ sessionData, setSessionData }) {
       alert("check your data");
       return;
     }
-    
+
     const role = entryData.userName;
     const updatedData = localStorageData ? { ...localStorageData, activeUser: role } : { ...sessionData, activeUser: role };
     localStorage.setItem("sessionData", JSON.stringify(updatedData));

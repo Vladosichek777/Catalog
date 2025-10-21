@@ -1,14 +1,14 @@
 import { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
-export default function useNavigateFirstEntry(sessionData, setSessionData) {
+export default function useNavigateFirstEntry( setSessionData) {
   const navigate = useNavigate();
   const location = useLocation();
   const localStorageData = JSON.parse(localStorage.getItem("sessionData"));
   const lastUser = localStorageData?.activeUser;
-  console.log("inside");
 
   useEffect(() => {
+    //первый заход или юзер полностью вышел
     if ((!localStorageData || !lastUser) && location.pathname !== "/login") {
       console.log("еще нет никакого юзера, localStorageData = 0");
       navigate("/login", { replace: true });
