@@ -3,7 +3,7 @@ import { useForm, Controller } from "react-hook-form";
 import { v4 as uuidv4 } from "uuid";
 
 export default function NewCardPopUp({ open, close, sessionData, setSessionData }) {
-  const { control, handleSubmit } = useForm({ defaultValues: { urlImage: "", cardName: "", cardDesc: "" } });
+  const { control, handleSubmit, reset } = useForm({ defaultValues: { urlImage: "", cardName: "", cardDesc: "" } });
 
   const onSubmit = (entryValues) => {
     const { urlImage, cardName, cardDesc } = entryValues;
@@ -11,6 +11,7 @@ export default function NewCardPopUp({ open, close, sessionData, setSessionData 
     const updatedData = { ...sessionData, avaliableProducts: [newObject, ...sessionData.avaliableProducts] };
     setSessionData(updatedData);
     localStorage.setItem("sessionData", JSON.stringify(updatedData));
+    reset();
     close();
   };
   return (

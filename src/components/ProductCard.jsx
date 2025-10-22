@@ -1,7 +1,7 @@
 import { useState } from "react";
 import handleDeleteCard from "../utils/handleDeleteCard";
 import handleUpdateBasket from "../utils/handleUpdateBasket";
-import { Button, Typography, Card, CardContent, CardMedia, CardActionArea, CardActions } from "@mui/material";
+import { Button, Typography, Card, CardContent, CardMedia, CardActionArea, CardActions, Box } from "@mui/material";
 
 function ProductCard({ id, cardName, description, src, isAdmin, sessionData, setSessionData, inBasket }) {
   const [buy, setBuy] = useState(false);
@@ -20,14 +20,24 @@ function ProductCard({ id, cardName, description, src, isAdmin, sessionData, set
       </CardActionArea>
       <CardActions>
         {isAdmin && (
-          <Button onClick={() => handleDeleteCard(id, sessionData, setSessionData, "avaliableProducts")} size="small" color="error" variant="contained">
-            Delete Card
-          </Button>
+          <Box sx={{ width: "100%", display: "flex", justifyContent: "space-between" }}>
+            <Button onClick={() => handleDeleteCard(id, sessionData, setSessionData, "avaliableProducts")} size="small" color="error" variant="contained">
+              Delete
+            </Button>
+            <Button size="small" color="warning" variant="outlined" sx={{ pl: 3, pr: 3 }}>
+              Edit Card
+            </Button>
+          </Box>
         )}
         {inBasket && (
-          <Button onClick={() => handleDeleteCard(id, sessionData, setSessionData, "basket")} size="small" color="error" variant="contained">
-            Delete Card
-          </Button>
+          <Box sx={{ width: "100%", display: "flex", justifyContent: "space-between" }}>
+            <Button onClick={() => handleDeleteCard(id, sessionData, setSessionData, "basket")} size="small" color="error" variant="outlined">
+              Delete
+            </Button>
+            <Button size="medium" color="success" variant="contained" sx={{ pl: 6, pr: 6 }}>
+              Buy
+            </Button>
+          </Box>
         )}
         {!isAdmin && !inBasket && (
           <Button
@@ -40,7 +50,7 @@ function ProductCard({ id, cardName, description, src, isAdmin, sessionData, set
             size="small"
             color="success"
           >
-            {!buy ? 'in basket' : 'success'}
+            {!buy ? "in basket" : "success"}
           </Button>
         )}
       </CardActions>

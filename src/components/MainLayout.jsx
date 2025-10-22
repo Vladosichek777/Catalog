@@ -5,13 +5,16 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Avatar from "@mui/material/Avatar";
-import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
+import Badge from "@mui/material/Badge";
 import IconButton from "@mui/material/IconButton";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Typography from "@mui/material/Typography";
 import { Menu, MenuItem } from "@mui/material";
 
 function MainLayout({ isAdmin, sessionData, setSessionData }) {
   const currentUser = JSON.parse(localStorage.getItem("sessionData")).activeUser;
+  const numberBasketCard = sessionData.basket.length;
+
   const [anchorEl, setAnchorEl] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
@@ -43,7 +46,9 @@ function MainLayout({ isAdmin, sessionData, setSessionData }) {
                   location.pathname === "/user/basket" ? e.preventDefault() : navigate("user/basket");
                 }}
               >
-                <ShoppingBasketIcon alt="basket" fontSize="large" />
+                <Badge badgeContent={numberBasketCard} color="secondary">
+                  <ShoppingCartIcon fontSize="large" />
+                </Badge>
               </IconButton>
             )}
             <IconButton onClick={handleOpenMenu} id="basic-button" aria-haspopup="true" aria-expanded={open ? "true" : undefined} aria-controls={open ? "basic-menu" : undefined}>
@@ -70,7 +75,7 @@ function MainLayout({ isAdmin, sessionData, setSessionData }) {
               disableScrollLock={true}
             >
               <Typography color="textPrimary" variant="h6" sx={{ p: 0.3 }}>
-                Hello: {currentUser}
+                Hello, {currentUser}
               </Typography>
               <MenuItem onClick={handleLogOutClick} sx={{ color: "red" }}>
                 Log out

@@ -41,8 +41,13 @@ export default function Login({ sessionData, setSessionData }) {
           <Typography variant="h3" gutterBottom color="#bdbdbd" sx={{ textAlign: "center", fontSize: { xs: "30px", sm: "35px", lg: "48px" } }}>
             Log In
           </Typography>
-          <Typography variant="subtitle1" color="#bdbdbd" gutterBottom>
-            Welcome user, please log in to continue
+          <Typography variant="h6" color="#bdbdbd" gutterBottom>
+            Welcome user, please log in to continue:
+          </Typography>
+          <Typography variant="subtitle2" color="#bdbdbd">
+            login: user, password: 67890
+            <br />
+            login: admin, password:12345
           </Typography>
           <Controller
             name="userName"
