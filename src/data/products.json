@@ -1,90 +1,108 @@
 [
   {
+    "id": "a3fdae7b-5f2d-4083-b88e-fc4e4438bb06",
     "name": "EcoSmart Headphones",
     "description": "Wireless over-ear headphones with noise-canceling feature and 30-hour battery life.",
     "src": "https://picsum.photos/id/237/200/300"
   },
   {
+    "id": "63cd4c63-c4fb-479b-972e-86b0b6cbb4f1",
     "name": "SleekSmartphone Pro",
     "description": "Latest smartphone with 6.5-inch OLED display and 128GB storage.",
     "src": "https://picsum.photos/id/238/200/300"
   },
   {
+    "id": "15903c2d-5e30-4932-a1aa-7362fbe32341",
     "name": "UltraClean Blender",
     "description": "High-speed blender with self-cleaning function and 1.5L capacity.",
     "src": "https://picsum.photos/id/239/200/300"
   },
   {
+    "id": "3f833e5d-1b1c-4b94-8ba9-83d2b7f2b1a3",
     "name": "SmartWatch X",
     "description": "Fitness tracker with heart rate monitor and sleep tracking.",
     "src": "https://picsum.photos/id/240/200/300"
   },
   {
+    "id": "ceec95bf-8649-4588-aa31-377c79f6cc22",
     "name": "PowerPlus Charger",
     "description": "Fast-charging power bank with 10000mAh capacity.",
     "src": "https://picsum.photos/id/241/200/300"
   },
   {
+    "id": "f3f77277-99ff-4fde-aa33-a4458e75a210",
     "name": "CleanSweep Robot",
     "description": "Automatic vacuum cleaner with smart mapping and scheduling.",
     "src": "https://picsum.photos/id/242/200/300"
   },
   {
+    "id": "981e6e19-5083-42f0-b111-005a4c63b9dd",
     "name": "AirPure Humidifier",
     "description": "Ultrasonic humidifier with 3 mist levels and night light.",
     "src": "https://picsum.photos/id/243/200/300"
   },
   {
+    "id": "275676e2-5eb2-4ac3-b014-b37cb1157e50",
     "name": "HomeFit Treadmill",
     "description": "Compact treadmill with adjustable incline and built-in speakers.",
     "src": "https://picsum.photos/id/244/200/300"
   },
   {
+    "id": "0f667712-d226-489a-ab61-5c2153848323",
     "name": "SmartLamp 360",
     "description": "Adjustable LED desk lamp with wireless charging base.",
     "src": "https://picsum.photos/id/245/200/300"
   },
   {
+    "id": "5fa43966-475a-4530-8305-111aead9790f",
     "name": "QuickCook Air Fryer",
     "description": "Healthy cooking air fryer with 5 preset programs.",
     "src": "https://picsum.photos/id/246/200/300"
   },
   {
+    "id": "bcea4e63-9773-4d5f-b6f8-6683043f99aa",
     "name": "SoundWave Speakers",
     "description": "Portable Bluetooth speakers with 12-hour battery life.",
     "src": "https://picsum.photos/id/247/200/300"
   },
   {
+    "id": "7ca58d40-03ad-4067-bc15-305d5a0f7dab",
     "name": "SmartLock Pro",
     "description": "Keyless entry smart lock with fingerprint recognition.",
     "src": "https://picsum.photos/id/248/200/300"
   },
   {
+    "id": "48670082-b0d7-4920-9a29-df6b430f7a32",
     "name": "UltraDry Dehumidifier",
     "description": "Energy-efficient dehumidifier with 2L water tank.",
     "src": "https://picsum.photos/id/249/200/300"
   },
   {
+    "id": "68a6f8c3-a1b8-4094-b488-5543e52e412a",
     "name": "PowerBoost Surge Protector",
     "description": "Surge protector with 10 outlets and 2 USB ports.",
     "src": "https://picsum.photos/id/250/200/300"
   },
   {
+    "id": "733c9812-81fb-404b-92d5-3d75b058486c",
     "name": "SmartThermo Heater",
     "description": "Portable heater with Wi-Fi control and 3 heat settings.",
     "src": "https://picsum.photos/id/251/200/300"
   },
   {
+    "id": "4af9b588-7c16-4ba3-a6fa-2dc636abd306",
     "name": "CleanJet Air Purifier",
     "description": "HEPA air purifier with 3-stage filtration system.",
     "src": "https://picsum.photos/id/252/200/300"
   },
   {
+    "id": "75008017-eb5a-4280-82af-572dd4b51c6e",
     "name": "SmartCook Instant Pot",
     "description": "Multi-function pressure cooker with 7 cooking presets.",
     "src": "https://picsum.photos/id/253/200/300"
   },
   {
+    "id": "dd0d5207-b459-47be-81d7-28aae5d8f916",
     "name": "PowerMax Cordless Drill",
     "description": "18V cordless drill with 2-speed gearbox and LED light.",
     "src": "https://picsum.photos/id/254/200/300"
