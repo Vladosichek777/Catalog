@@ -10,7 +10,6 @@ import ProtectedRole from "./components/ProtectedRole";
 
 import "./App.css";
 
-
 function App() {
   const localStorageData = JSON.parse(localStorage.getItem("sessionData"));
   const activeUser = localStorageData?.activeUser;
@@ -23,6 +22,7 @@ function App() {
   useNavigateFirstEntry(setSessionData);
   console.log("app render ");
   console.log(sessionData);
+  console.log(localStorageData);
   return (
     <Routes>
       <Route path="login" element={<Login sessionData={sessionData} setSessionData={setSessionData} />} />

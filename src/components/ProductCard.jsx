@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import handleDeleteCard from "../utils/handleDeleteCard";
 import handleUpdateBasket from "../utils/handleUpdateBasket";
 import { Button, Typography, Card, CardContent, CardMedia, CardActionArea, CardActions, Box } from "@mui/material";
 
-function ProductCard({ id, cardName, description, src, isAdmin, sessionData, setSessionData, inBasket }) {
+function ProductCard({ id, cardName, description, src, isAdmin, sessionData, setSessionData, inBasket, isBought }) {
   const [buy, setBuy] = useState(false);
+  useEffect(() => {
+    isBought ? setBuy(true) : "";
+  }, [isBought]);
+
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea>
@@ -21,7 +25,7 @@ function ProductCard({ id, cardName, description, src, isAdmin, sessionData, set
       <CardActions>
         {isAdmin && (
           <Box sx={{ width: "100%", display: "flex", justifyContent: "space-between" }}>
-            <Button onClick={() => handleDeleteCard(id, sessionData, setSessionData, "avaliableProducts")} size="small" color="error" variant="contained">
+            <Button onClick={() => handleDeleteCard(id, sessionData, setSessionData, "admin")} size="small" color="error" variant="contained">
               Delete
             </Button>
             <Button size="small" color="warning" variant="outlined" sx={{ pl: 3, pr: 3 }}>
@@ -31,7 +35,7 @@ function ProductCard({ id, cardName, description, src, isAdmin, sessionData, set
         )}
         {inBasket && (
           <Box sx={{ width: "100%", display: "flex", justifyContent: "space-between" }}>
-            <Button onClick={() => handleDeleteCard(id, sessionData, setSessionData, "basket")} size="small" color="error" variant="outlined">
+            <Button onClick={() => handleDeleteCard(id, sessionData, setSessionData, "user")} size="small" color="error" variant="outlined">
               Delete
             </Button>
             <Button size="medium" color="success" variant="contained" sx={{ pl: 6, pr: 6 }}>
@@ -50,7 +54,7 @@ function ProductCard({ id, cardName, description, src, isAdmin, sessionData, set
             size="small"
             color="success"
           >
-            {!buy ? "in basket" : "success"}
+            {!buy ? "in basket" : "Done \u2713"}
           </Button>
         )}
       </CardActions>

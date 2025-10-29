@@ -40,7 +40,7 @@ function MainPage({ sessionData, setSessionData, isAdmin }) {
         >
           {sessionData.avaliableProducts.map((card, id) => (
             <SwiperSlide>
-              <ProductCard key={id} id={card.id} cardName={card.name} description={card.description} src={card.src} isAdmin={isAdmin} sessionData={sessionData} setSessionData={setSessionData} />
+              <ProductCard key={id} id={card.id} cardName={card.name} description={card.description} src={card.src} isAdmin={isAdmin} isBought={card.isBought} sessionData={sessionData} setSessionData={setSessionData} />
             </SwiperSlide>
           ))}
         </Swiper>
