@@ -21,8 +21,7 @@ function App() {
   const isAdmin = sessionData.activeUser === "admin";
   useNavigateFirstEntry(setSessionData);
   console.log("app render ");
-  console.log(sessionData);
-  console.log(localStorageData);
+ 
   return (
     <Routes>
       <Route path="login" element={<Login sessionData={sessionData} setSessionData={setSessionData} />} />

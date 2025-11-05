@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import {useState} from "react";
+import {Outlet, useLocation, useNavigate} from "react-router-dom";
 import Container from "@mui/material/Container";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -9,9 +9,9 @@ import Badge from "@mui/material/Badge";
 import IconButton from "@mui/material/IconButton";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Typography from "@mui/material/Typography";
-import { Menu, MenuItem } from "@mui/material";
+import {Menu, MenuItem} from "@mui/material";
 
-function MainLayout({ isAdmin, sessionData, setSessionData }) {
+function MainLayout({isAdmin, sessionData, setSessionData}) {
   const currentUser = JSON.parse(localStorage.getItem("sessionData")).activeUser;
   const numberBasketCard = sessionData.basket.length;
 
@@ -27,17 +27,17 @@ function MainLayout({ isAdmin, sessionData, setSessionData }) {
     setAnchorEl(null); // закрываем меню
   };
   const handleLogOutClick = () => {
-    localStorage.setItem("sessionData", JSON.stringify({ ...sessionData, activeUser: "" }));
-    setSessionData({ ...sessionData, activeUser: "" });
-    navigate("login", { replace: true });
+    localStorage.setItem("sessionData", JSON.stringify({...sessionData, activeUser: ""}));
+    setSessionData({...sessionData, activeUser: ""});
+    navigate("login", {replace: true});
   };
 
   return (
-    <Container maxWidth="lg" sx={{ outline: "5px solid red" }}>
+    <Container maxWidth="lg" sx={{outline: "5px solid red"}}>
       <Box>
-        <AppBar position="static" sx={{ width: "100%" }}>
-          <Toolbar sx={{ justifyContent: "flex-end" }}>
-            <Box sx={{ flexGrow: 1 }}>
+        <AppBar position="static" sx={{width: "100%"}}>
+          <Toolbar sx={{justifyContent: "flex-end"}}>
+            <Box sx={{flexGrow: 1}}>
               <Typography variant="h4">My app</Typography>
             </Box>
             {!isAdmin && (
@@ -51,7 +51,13 @@ function MainLayout({ isAdmin, sessionData, setSessionData }) {
                 </Badge>
               </IconButton>
             )}
-            <IconButton onClick={handleOpenMenu} id="basic-button" aria-haspopup="true" aria-expanded={open ? "true" : undefined} aria-controls={open ? "basic-menu" : undefined}>
+            <IconButton
+              onClick={handleOpenMenu}
+              id="basic-button"
+              aria-haspopup="true"
+              aria-expanded={open ? "true" : undefined}
+              aria-controls={open ? "basic-menu" : undefined}
+            >
               <Avatar alt="user" fontSize="small" src="" />
             </IconButton>
             <Menu
@@ -74,10 +80,10 @@ function MainLayout({ isAdmin, sessionData, setSessionData }) {
               }}
               disableScrollLock={true}
             >
-              <Typography color="textPrimary" variant="h6" sx={{ p: 0.3 }}>
+              <Typography color="textPrimary" variant="h6" sx={{p: 0.3}}>
                 Hello, {currentUser}
               </Typography>
-              <MenuItem onClick={handleLogOutClick} sx={{ color: "red" }}>
+              <MenuItem onClick={handleLogOutClick} sx={{color: "red"}}>
                 Log out
               </MenuItem>
             </Menu>

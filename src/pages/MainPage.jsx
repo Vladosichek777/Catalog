@@ -1,16 +1,17 @@
-import NewCardPopUp from "../components/NewCardPopUp";
+import CardPopUp from "../components/CardPopUp";
 import ProductCard from "../components/ProductCard";
-import { useState } from "react";
-import { Button, Box } from "@mui/material";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Grid } from "swiper/modules";
+import {useState} from "react";
+import {Button, Box} from "@mui/material";
+import {Swiper, SwiperSlide} from "swiper/react";
+import {Pagination, Grid} from "swiper/modules";
 import "swiper/css";
 import "swiper/css/grid";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-function MainPage({ sessionData, setSessionData, isAdmin }) {
+function MainPage({sessionData, setSessionData, isAdmin}) {
   const [openModalNewCard, setOpenModalNewCard] = useState(false);
+  const [currentEditCard, setCurrentEditCard] = useState({});
   const handleCloseModalNewCard = () => {
     setOpenModalNewCard(false);
   };
@@ -18,15 +19,23 @@ function MainPage({ sessionData, setSessionData, isAdmin }) {
     setOpenModalNewCard(true);
   };
 
+
   return (
-    <Box sx={{ border: "2px solid blue" }}>
+    <Box sx={{border: "2px solid blue"}}>
       {isAdmin && (
         <Button onClick={handleOpenModalNewCard} variant="contained" size="large" color="success">
           Add new Card
         </Button>
       )}
-      <NewCardPopUp open={openModalNewCard} close={handleCloseModalNewCard} sessionData={sessionData} setSessionData={setSessionData} />
-      <Box sx={{ border: "2px solid orange", mt: 5 }}>
+      <CardPopUp
+        open={openModalNewCard}
+        close={handleCloseModalNewCard}
+        sessionData={sessionData}
+        setSessionData={setSessionData}
+        currentEditCard={currentEditCard}
+        setCurrentEditCard={setCurrentEditCard}
+      />
+      <Box sx={{border: "2px solid orange", mt: 5}}>
         <Swiper
           // install Swiper modules
           modules={[Pagination, Grid]}
@@ -35,12 +44,24 @@ function MainPage({ sessionData, setSessionData, isAdmin }) {
           grid={{
             rows: 2,
           }}
-          pagination={{ clickable: true }}
-          scrollbar={{ draggable: true }}
+          pagination={{clickable: true}}
+          scrollbar={{draggable: true}}
         >
           {sessionData.avaliableProducts.map((card, id) => (
             <SwiperSlide>
-              <ProductCard key={id} id={card.id} cardName={card.name} description={card.description} src={card.src} isAdmin={isAdmin} isBought={card.isBought} sessionData={sessionData} setSessionData={setSessionData} />
+              <ProductCard
+                key={id}
+                id={card.id}
+                cardName={card.name}
+                description={card.description}
+                src={card.src}
+                isAdmin={isAdmin}
+                isBought={card.isBought}
+                sessionData={sessionData}
+                setSessionData={setSessionData}
+                editModal={handleOpenModalNewCard}
+                setCurrentEditCard={setCurrentEditCard}
+              />
             </SwiperSlide>
           ))}
         </Swiper>
