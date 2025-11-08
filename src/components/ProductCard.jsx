@@ -21,6 +21,8 @@ function ProductCard({
   isBought,
   editModal,
   setCurrentEditCard,
+  handleOpenConfirmWindow,
+
 }) {
   const [countProducts, setCountProducts] = useState(1);
   const [buy, setBuy] = useState(false);
@@ -37,6 +39,7 @@ function ProductCard({
   useEffect(() => {
     isBought ? setBuy(true) : "";
   }, [isBought]);
+
 
   return (
     <Card sx={{maxWidth: 500}}>
@@ -61,7 +64,10 @@ function ProductCard({
             }}
           >
             <Button
-              onClick={() => handleDeleteCard(id, sessionData, setSessionData, "admin")}
+              onClick={() => {
+                handleOpenConfirmWindow();
+                handleDeleteCard(id, sessionData, setSessionData, "admin");
+              }}
               size="small"
               color="error"
               variant="contained"
