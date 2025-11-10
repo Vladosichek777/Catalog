@@ -41,8 +41,6 @@ function MainPage({sessionData, setSessionData, isAdmin}) {
   //   (result) => console.log(result)
   // );
 
-
-
   return (
     <Box sx={{border: "2px solid blue"}}>
       {isAdmin && (

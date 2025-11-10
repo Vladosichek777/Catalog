@@ -73,7 +73,7 @@ function ProductCard({
             <Button
               onClick={() => {
                 handleOpenConfirmWindow();
-                // handleDeleteCard(id, sessionData, setSessionData, "admin");
+                handleDeleteCard(id, sessionData, setSessionData, "admin");
               }}
               size="small"
               color="error"
