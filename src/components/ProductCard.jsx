@@ -2,6 +2,8 @@ import {useState, useEffect} from "react";
 import handleDeleteCard from "../utils/handleDeleteCard";
 import handleUpdateBasket from "../utils/handleUpdateBasket";
 import CountProducts from "./CountProducts";
+import useNavigation from "../utils/useNavigation";
+
 import {Button, Typography, Card, CardContent, CardMedia, CardActionArea, CardActions, Box} from "@mui/material";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
@@ -21,12 +23,14 @@ function ProductCard({
   isBought,
   editModal,
   setCurrentEditCard,
+  handleOpenConfirmWindow,
 }) {
   const [countProducts, setCountProducts] = useState(1);
   const [buy, setBuy] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const currentCardData = {id: id, name: cardName, description: description, src: src, isBought: isBought};
+  const {goToProductCard} = useNavigation();
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -41,7 +45,13 @@ function ProductCard({
   return (
     <Card sx={{maxWidth: 500}}>
       <CardActionArea>
-        <CardMedia component="img" sx={{height: {xs: 50, sm: 150, lg: 200}}} image={src} alt={description} />
+        <CardMedia
+          onClick={() => goToProductCard(id, isAdmin ? "admin" : "user")}
+          component="img"
+          sx={{height: {xs: 50, sm: 150, lg: 200}}}
+          image={src}
+          alt={description}
+        />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             {cardName}
@@ -61,7 +71,10 @@ function ProductCard({
             }}
           >
             <Button
-              onClick={() => handleDeleteCard(id, sessionData, setSessionData, "admin")}
+              onClick={() => {
+                handleOpenConfirmWindow();
+                // handleDeleteCard(id, sessionData, setSessionData, "admin");
+              }}
               size="small"
               color="error"
               variant="contained"

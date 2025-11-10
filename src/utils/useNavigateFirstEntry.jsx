@@ -10,7 +10,6 @@ export default function useNavigateFirstEntry(setSessionData) {
   useEffect(() => {
     //первый заход или юзер полностью вышел
     if ((!localStorageData || !lastUser) && location.pathname !== "/login") {
-      console.log("еще нет никакого юзера, localStorageData = 0");
       navigate("/login", {replace: true});
       return;
     }
