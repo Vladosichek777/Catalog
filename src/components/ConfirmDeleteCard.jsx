@@ -1,4 +1,5 @@
 import * as React from "react";
+import handleDeleteCard from "../utils/handleDeleteCard";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -10,7 +11,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function ConfirmDeleteCard({open, handleClose}) {
+export default function ConfirmDeleteCard({open, handleClose, sessionData, setSessionData, idCurrentCard}) {
   return (
     <>
       <Dialog
@@ -33,6 +34,7 @@ export default function ConfirmDeleteCard({open, handleClose}) {
             variant="outlined"
             color="error"
             onClick={() => {
+              handleDeleteCard(idCurrentCard, sessionData, setSessionData, "admin");
               handleClose();
             }}
           >

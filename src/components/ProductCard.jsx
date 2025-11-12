@@ -24,6 +24,7 @@ function ProductCard({
   editModal,
   setCurrentEditCard,
   handleOpenConfirmWindow,
+  setIdCurrentCard,
 }) {
   const [countProducts, setCountProducts] = useState(1);
   const [buy, setBuy] = useState(false);
@@ -73,7 +74,7 @@ function ProductCard({
             <Button
               onClick={() => {
                 handleOpenConfirmWindow();
-                handleDeleteCard(id, sessionData, setSessionData, "admin");
+                setIdCurrentCard(id);
               }}
               size="small"
               color="error"

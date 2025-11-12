@@ -1,6 +1,7 @@
 import CardPopUp from "../components/CardPopUp";
 import ProductCard from "../components/ProductCard";
 import ConfirmDeleteCard from "../components/ConfirmDeleteCard";
+
 import {useState, useRef} from "react";
 import {Button, Box} from "@mui/material";
 import {Swiper, SwiperSlide} from "swiper/react";
@@ -14,6 +15,7 @@ function MainPage({sessionData, setSessionData, isAdmin}) {
   const [openModalNewCard, setOpenModalNewCard] = useState(false);
   const [currentEditCard, setCurrentEditCard] = useState({});
   const [openConfirmWindow, setOpenConfirmWindow] = useState(false);
+  const [idCurrentCard, setIdCurrentCard] = useState("");
 
   const handleOpenConfirmWindow = () => {
     setOpenConfirmWindow(true);
@@ -27,19 +29,6 @@ function MainPage({sessionData, setSessionData, isAdmin}) {
   const handleOpenModalNewCard = () => {
     setOpenModalNewCard(true);
   };
-
-  // const promise = new Promise((resolve, reject) => {
-  //   let a = 1 + 1;
-  //   if (a === 2) {
-  //     resolve("super");
-  //   } else {
-  //     reject("fail");
-  //   }
-  // });
-
-  // promise.then(
-  //   (result) => console.log(result)
-  // );
 
   return (
     <Box sx={{border: "2px solid blue"}}>
@@ -56,7 +45,13 @@ function MainPage({sessionData, setSessionData, isAdmin}) {
         currentEditCard={currentEditCard}
         setCurrentEditCard={setCurrentEditCard}
       />
-      <ConfirmDeleteCard open={openConfirmWindow} handleClose={handleCloseConfirmWindow} />
+      <ConfirmDeleteCard
+        open={openConfirmWindow}
+        handleClose={handleCloseConfirmWindow}
+        sessionData={sessionData}
+        setSessionData={setSessionData}
+        idCurrentCard={idCurrentCard}
+      />
       <Box sx={{border: "2px solid orange", mt: 5}}>
         <Swiper
           // install Swiper modules
@@ -84,6 +79,7 @@ function MainPage({sessionData, setSessionData, isAdmin}) {
                 editModal={handleOpenModalNewCard}
                 setCurrentEditCard={setCurrentEditCard}
                 handleOpenConfirmWindow={handleOpenConfirmWindow}
+                setIdCurrentCard={setIdCurrentCard}
               />
             </SwiperSlide>
           ))}
