@@ -1,5 +1,4 @@
 import * as React from "react";
-import handleDeleteCard from "../utils/handleDeleteCard";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -11,7 +10,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function ConfirmDeleteCard({open, handleClose, sessionData, setSessionData, idCurrentCard}) {
+export default function ConfirmDeleteCard({open, onClose, onDelete}) {
   return (
     <>
       <Dialog
@@ -20,22 +19,22 @@ export default function ConfirmDeleteCard({open, handleClose, sessionData, setSe
           transition: Transition,
         }}
         keepMounted
-        onClose={handleClose}
+        onClose={onClose}
         aria-describedby="alert-dialog-slide-description"
       >
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">Are you sure?</DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button variant="contained" color="success" onClick={handleClose}>
+          <Button variant="contained" color="success" onClick={onClose}>
             Disagree
           </Button>
           <Button
             variant="outlined"
             color="error"
             onClick={() => {
-              handleDeleteCard(idCurrentCard, sessionData, setSessionData, "admin");
-              handleClose();
+              onDelete();
+              onClose();
             }}
           >
             Agree

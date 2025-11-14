@@ -4,31 +4,33 @@ import {v4 as uuidv4} from "uuid";
 import {useEffect} from "react";
 
 export default function CardPopUp({open, close, sessionData, setSessionData, currentEditCard, setCurrentEditCard}) {
-  const isEditCardMode = Object.keys(currentEditCard).length !== 0;
+  const isEditMode = Object.keys(currentEditCard).length !== 0;
   const {control, handleSubmit, reset} = useForm({
     defaultValues: {urlImage: "", cardName: "", cardDesc: ""},
   });
 
   const onSubmit = ({urlImage, cardName, cardDesc}) => {
-    const newObject = {id: uuidv4(), name: cardName, description: cardDesc, src: urlImage, isBought: false};
-    let updatedData = {};
-    if (isEditCardMode) {
+    let newEditData = {};
+    //if admin edit card
+    if (isEditMode) {
       const updatedAvaliableProducts = sessionData.avaliableProducts.map((card) =>
         card.id === currentEditCard.id ? {...card, name: cardName, description: cardDesc, src: urlImage} : card
       );
-      updatedData = {...sessionData, avaliableProducts: updatedAvaliableProducts};
+      newEditData = {...sessionData, avaliableProducts: updatedAvaliableProducts};
     } else {
-      updatedData = {...sessionData, avaliableProducts: [newObject, ...sessionData.avaliableProducts]};
+      //if admin add new card
+      const newObject = {id: uuidv4(), name: cardName, description: cardDesc, src: urlImage, isBought: false};
+      newEditData = {...sessionData, avaliableProducts: [newObject, ...sessionData.avaliableProducts]};
     }
 
-    setSessionData(updatedData);
-    localStorage.setItem("sessionData", JSON.stringify(updatedData));
+    setSessionData(newEditData);
+    localStorage.setItem("sessionData", JSON.stringify(newEditData));
     reset();
     close();
   };
 
   useEffect(() => {
-    if (isEditCardMode) {
+    if (isEditMode) {
       reset({
         urlImage: currentEditCard.src,
         cardName: currentEditCard.name,
@@ -37,7 +39,7 @@ export default function CardPopUp({open, close, sessionData, setSessionData, cur
     } else {
       reset({urlImage: "", cardName: "", cardDesc: ""});
     }
-  }, [isEditCardMode, currentEditCard, reset]);
+  }, [isEditMode, currentEditCard, reset]);
 
   return (
     <Dialog
@@ -47,12 +49,13 @@ export default function CardPopUp({open, close, sessionData, setSessionData, cur
         close();
       }}
     >
-      <DialogTitle>{isEditCardMode ? "Update current card" : "Add New Card"} </DialogTitle>
+      <DialogTitle>{isEditMode ? "Update current card" : "Add New Card"} </DialogTitle>
       <DialogContent>
         <DialogContentText>
           {" "}
-          {isEditCardMode ? " Enter new value" : "Enter a value for the new product card"}
+          {isEditMode ? " Enter new value" : "Enter a value for the new product card"}
         </DialogContentText>
+
         <form onSubmit={handleSubmit(onSubmit)}>
           <Controller
             name="urlImage"
@@ -74,7 +77,7 @@ export default function CardPopUp({open, close, sessionData, setSessionData, cur
           <DialogActions>
             <Button onClick={close}>Cancel</Button>
             <Button variant="contained" color="success" type="submit">
-              {isEditCardMode ? "Done" : "Add Card"}
+              {isEditMode ? "Done" : "Add Card"}
             </Button>
           </DialogActions>
         </form>

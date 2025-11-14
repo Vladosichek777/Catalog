@@ -1,8 +1,10 @@
+import defaultEntryValue from "../data/defaultEntryValues";
+
 import {useForm, Controller} from "react-hook-form";
 import {TextField, Button, Box, Typography} from "@mui/material";
 import {useNavigate, useLocation} from "react-router-dom";
 
-export default function Login({sessionData, setSessionData}) {
+export default function Login({sessionData, setSessionData, localStorageData}) {
   const {control, handleSubmit} = useForm({
     defaultValues: {userName: "", password: ""},
   });
@@ -10,16 +12,10 @@ export default function Login({sessionData, setSessionData}) {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
-  const defaultEntryValue = [
-    {name: "admin", password: "12345"},
-    {name: "user", password: "67890"},
-  ];
-
   const onSubmit = (entryData) => {
     const isUserExist = defaultEntryValue.some(
       (user) => user.name === entryData.userName && user.password === entryData.password
     );
-    const localStorageData = JSON.parse(localStorage.getItem("sessionData"));
 
     if (!isUserExist) {
       alert("check your data");

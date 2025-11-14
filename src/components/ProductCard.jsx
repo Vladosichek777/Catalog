@@ -1,15 +1,11 @@
 import {useState, useEffect} from "react";
 import handleDeleteCard from "../utils/handleDeleteCard";
 import handleUpdateBasket from "../utils/handleUpdateBasket";
-import CountProducts from "./CountProducts";
+import CountBasketControl from "./CountBasketControl";
 import useNavigation from "../utils/useNavigation";
+import AdditionalCardOptionsInBasket from "./AdditionalCardOptionsInBasket";
 
 import {Button, Typography, Card, CardContent, CardMedia, CardActionArea, CardActions, Box} from "@mui/material";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import Fade from "@mui/material/Fade";
 
 function ProductCard({
   id,
@@ -21,26 +17,20 @@ function ProductCard({
   setSessionData,
   inBasket,
   isBought,
-  editModal,
-  setCurrentEditCard,
-  handleOpenConfirmWindow,
-  setIdCurrentCard,
+  deleteCard,
+  editCard,
 }) {
-  const [countProducts, setCountProducts] = useState(1);
-  const [buy, setBuy] = useState(false);
-  const [anchorEl, setAnchorEl] = useState(null);
-  const open = Boolean(anchorEl);
   const currentCardData = {id: id, name: cardName, description: description, src: src, isBought: isBought};
+  const [countCurrentCardBasket, setCountCurrentCardBasket] = useState(1);
+  const [buyStatusButton, setBuyStatusButton] = useState(false);
   const {goToProductCard} = useNavigation();
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
+  const handleClickBuyButton = () => {
+    handleUpdateBasket(id, description, src, cardName, sessionData, setSessionData);
+    setBuyStatusButton(true);
   };
 
   useEffect(() => {
-    isBought ? setBuy(true) : "";
+    isBought ? setBuyStatusButton(true) : "";
   }, [isBought]);
 
   return (
@@ -71,22 +61,11 @@ function ProductCard({
               justifyContent: "space-between",
             }}
           >
-            <Button
-              onClick={() => {
-                handleOpenConfirmWindow();
-                setIdCurrentCard(id);
-              }}
-              size="small"
-              color="error"
-              variant="contained"
-            >
+            <Button onClick={() => deleteCard(id)} size="small" color="error" variant="contained">
               Delete
             </Button>
             <Button
-              onClick={() => {
-                editModal();
-                setCurrentEditCard(currentCardData);
-              }}
+              onClick={() => editCard(currentCardData)}
               size="small"
               color="warning"
               variant="outlined"
@@ -96,6 +75,7 @@ function ProductCard({
             </Button>
           </Box>
         )}
+
         {inBasket && (
           <Box
             sx={{
@@ -107,64 +87,28 @@ function ProductCard({
             <Button size="small" color="success" variant="contained" sx={{pl: 6, pr: 6}}>
               Buy
             </Button>
-            <CountProducts countProducts={countProducts} setCountProducts={setCountProducts} />
-            <div>
-              <Button
-                id="demo-positioned-button"
-                aria-controls={open ? "demo-positioned-menu" : undefined}
-                aria-haspopup="true"
-                aria-expanded={open ? "true" : undefined}
-                onClick={handleClick}
-              >
-                <MoreVertIcon></MoreVertIcon>
-              </Button>
-              <Menu
-                id="demo-positioned-menu"
-                aria-labelledby="demo-positioned-button"
-                slotProps={{
-                  list: {
-                    "aria-labelledby": "fade-button",
-                  },
-                }}
-                slots={{transition: Fade}}
-                anchorEl={anchorEl}
-                open={open}
-                onClose={handleClose}
-                anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "right",
-                }}
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-              >
-                <MenuItem
-                  onClick={() => {
-                    handleDeleteCard(id, sessionData, setSessionData, "user");
-                  }}
-                  onClose={handleClose}
-                  sx={{color: "red"}}
-                >
-                  {" "}
-                  <DeleteForeverIcon />
-                </MenuItem>
-              </Menu>
-            </div>
+            <CountBasketControl
+              countCurrentCardBasket={countCurrentCardBasket}
+              setCountCurrentCardBasket={setCountCurrentCardBasket}
+            />
+            <AdditionalCardOptionsInBasket
+              id={id}
+              sessionData={sessionData}
+              setSessionData={setSessionData}
+              onDeleteCard={handleDeleteCard}
+            />
           </Box>
         )}
+
         {!isAdmin && !inBasket && (
           <Button
-            onClick={() => {
-              handleUpdateBasket(id, description, src, cardName, sessionData, setSessionData);
-              setBuy(true);
-            }}
+            onClick={handleClickBuyButton}
             variant="contained"
-            disabled={buy}
+            disabled={buyStatusButton}
             size="small"
             color="success"
           >
-            {!buy ? "in basket" : "Done \u2713"}
+            {!buyStatusButton ? "in basket" : "Done \u2713"}
           </Button>
         )}
       </CardActions>

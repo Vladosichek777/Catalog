@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {Routes, Route, Navigate, NavLink} from "react-router-dom";
 import Login from "./pages/Login";
 import Basket from "./pages/Basket";
@@ -8,7 +8,6 @@ import ProductPage from "./pages/ProductPage";
 import useNavigateFirstEntry from "./utils/useNavigateFirstEntry";
 import products from "./data/products.json";
 import ProtectedRole from "./components/ProtectedRole";
-
 import "./App.css";
 
 function App() {
@@ -20,13 +19,27 @@ function App() {
     basket: [],
   });
   const isAdmin = sessionData.activeUser === "admin";
-  useNavigateFirstEntry(setSessionData);
+  useNavigateFirstEntry(localStorageData, setSessionData);
   console.log("app render ");
 
   return (
     <Routes>
-      <Route path="login" element={<Login sessionData={sessionData} setSessionData={setSessionData} />} />
-      <Route element={<MainLayout isAdmin={isAdmin} sessionData={sessionData} setSessionData={setSessionData} />}>
+      <Route
+        path="login"
+        element={
+          <Login sessionData={sessionData} setSessionData={setSessionData} localStorageData={localStorageData} />
+        }
+      />
+      <Route
+        element={
+          <MainLayout
+            isAdmin={isAdmin}
+            activeUser={activeUser}
+            sessionData={sessionData}
+            setSessionData={setSessionData}
+          />
+        }
+      >
         <Route element={<ProtectedRole role="admin" activeUser={activeUser} />}>
           <Route
             path="admin"

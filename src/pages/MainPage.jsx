@@ -1,8 +1,8 @@
 import CardPopUp from "../components/CardPopUp";
 import ProductCard from "../components/ProductCard";
 import ConfirmDeleteCard from "../components/ConfirmDeleteCard";
-
-import {useState, useRef} from "react";
+import handleDeleteCard from "../utils/handleDeleteCard";
+import {useState} from "react";
 import {Button, Box} from "@mui/material";
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Pagination, Grid} from "swiper/modules";
@@ -17,23 +17,28 @@ function MainPage({sessionData, setSessionData, isAdmin}) {
   const [openConfirmWindow, setOpenConfirmWindow] = useState(false);
   const [idCurrentCard, setIdCurrentCard] = useState("");
 
-  const handleOpenConfirmWindow = () => {
-    setOpenConfirmWindow(true);
-  };
   const handleCloseConfirmWindow = () => {
     setOpenConfirmWindow(false);
   };
   const handleCloseModalNewCard = () => {
     setOpenModalNewCard(false);
   };
-  const handleOpenModalNewCard = () => {
+  const handleDeleteCardByAdmin = () => {
+    handleDeleteCard(idCurrentCard, sessionData, setSessionData, "admin");
+  };
+  const handleClickDeleteCard = (id) => {
+    setOpenConfirmWindow(true);
+    setIdCurrentCard(id);
+  };
+  const handleOpenPopUp = (currentCardData) => {
     setOpenModalNewCard(true);
+    setCurrentEditCard(currentCardData);
   };
 
   return (
     <Box sx={{border: "2px solid blue"}}>
       {isAdmin && (
-        <Button onClick={handleOpenModalNewCard} variant="contained" size="large" color="success">
+        <Button onClick={() => setOpenModalNewCard(true)} variant="contained" size="large" color="success">
           Add new Card
         </Button>
       )}
@@ -47,14 +52,11 @@ function MainPage({sessionData, setSessionData, isAdmin}) {
       />
       <ConfirmDeleteCard
         open={openConfirmWindow}
-        handleClose={handleCloseConfirmWindow}
-        sessionData={sessionData}
-        setSessionData={setSessionData}
-        idCurrentCard={idCurrentCard}
+        onClose={handleCloseConfirmWindow}
+        onDelete={handleDeleteCardByAdmin}
       />
       <Box sx={{border: "2px solid orange", mt: 5}}>
         <Swiper
-          // install Swiper modules
           modules={[Pagination, Grid]}
           spaceBetween={30}
           slidesPerView={4}
@@ -76,10 +78,8 @@ function MainPage({sessionData, setSessionData, isAdmin}) {
                 isBought={card.isBought}
                 sessionData={sessionData}
                 setSessionData={setSessionData}
-                editModal={handleOpenModalNewCard}
-                setCurrentEditCard={setCurrentEditCard}
-                handleOpenConfirmWindow={handleOpenConfirmWindow}
-                setIdCurrentCard={setIdCurrentCard}
+                deleteCard={handleClickDeleteCard}
+                editCard={handleOpenPopUp}
               />
             </SwiperSlide>
           ))}

@@ -4,11 +4,13 @@ import ProductCard from "../components/ProductCard";
 import Typography from "@mui/material/Typography";
 
 export default function Basket({sessionData, setSessionData}) {
+  const isBasketEmpty = sessionData.basket.length === 0;
+
   return (
     <>
-      {sessionData.basket.length === 0 && (
+      {isBasketEmpty && (
         <Typography variant="h3" align="center">
-          Basket is epmty : ({" "}
+          Basket is epmty
         </Typography>
       )}
       <Swiper

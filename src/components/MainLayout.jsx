@@ -11,20 +11,18 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Typography from "@mui/material/Typography";
 import {Menu, MenuItem} from "@mui/material";
 
-function MainLayout({isAdmin, sessionData, setSessionData}) {
-  const currentUser = JSON.parse(localStorage.getItem("sessionData")).activeUser;
-  const numberBasketCard = sessionData.basket.length;
-
+function MainLayout({isAdmin, activeUser, sessionData, setSessionData}) {
+  const countProductBasket = sessionData.basket.length;
   const [anchorEl, setAnchorEl] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
-  const open = Boolean(anchorEl); // флаг — открыто ли меню
+  const open = Boolean(anchorEl);
 
   const handleOpenMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleCloseMenu = () => {
-    setAnchorEl(null); // закрываем меню
+    setAnchorEl(null);
   };
   const handleLogOutClick = () => {
     localStorage.setItem("sessionData", JSON.stringify({...sessionData, activeUser: ""}));
@@ -40,13 +38,14 @@ function MainLayout({isAdmin, sessionData, setSessionData}) {
             <Box sx={{flexGrow: 1}}>
               <Typography variant="h4">My app</Typography>
             </Box>
+            {/* Add Basket Button for user */}
             {!isAdmin && (
               <IconButton
                 onClick={(e) => {
                   location.pathname === "/user/basket" ? e.preventDefault() : navigate("user/basket");
                 }}
               >
-                <Badge badgeContent={numberBasketCard} color="secondary">
+                <Badge badgeContent={countProductBasket} color="secondary">
                   <ShoppingCartIcon fontSize="large" />
                 </Badge>
               </IconButton>
@@ -81,7 +80,7 @@ function MainLayout({isAdmin, sessionData, setSessionData}) {
               disableScrollLock={true}
             >
               <Typography color="textPrimary" variant="h6" sx={{p: 0.3}}>
-                Hello, {currentUser}
+                Hello, {activeUser}
               </Typography>
               <MenuItem onClick={handleLogOutClick} sx={{color: "red"}}>
                 Log out
