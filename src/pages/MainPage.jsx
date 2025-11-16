@@ -13,8 +13,8 @@ import "swiper/css/navigation";
 
 function MainPage({sessionData, setSessionData, isAdmin}) {
   const [openModalNewCard, setOpenModalNewCard] = useState(false);
-  const [currentEditCard, setCurrentEditCard] = useState({});
   const [openConfirmWindow, setOpenConfirmWindow] = useState(false);
+  const [currentEditCard, setCurrentEditCard] = useState({});
   const [idCurrentCard, setIdCurrentCard] = useState("");
 
   const handleCloseConfirmWindow = () => {
