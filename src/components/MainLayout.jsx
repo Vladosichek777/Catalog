@@ -1,4 +1,5 @@
-import {useState} from "react";
+import {useState, useContext} from "react";
+import {SessionContext} from "../App.jsx";
 import {Outlet, useLocation, useNavigate} from "react-router-dom";
 import Container from "@mui/material/Container";
 import AppBar from "@mui/material/AppBar";
@@ -11,13 +12,17 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Typography from "@mui/material/Typography";
 import {Menu, MenuItem} from "@mui/material";
 
-function MainLayout({isAdmin, activeUser, sessionData, setSessionData}) {
-  const countProductBasket = sessionData.basket.length;
+function MainLayout() {
+  const session = useContext(SessionContext);
+  const countProductBasket = session.sessionData.basket.length;
+  const activeUser = session.sessionData.activeUser;
+  const isAdmin = activeUser === "admin";
+
   const [anchorEl, setAnchorEl] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
   const open = Boolean(anchorEl);
-
+  
   const handleOpenMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -25,8 +30,8 @@ function MainLayout({isAdmin, activeUser, sessionData, setSessionData}) {
     setAnchorEl(null);
   };
   const handleLogOutClick = () => {
-    localStorage.setItem("sessionData", JSON.stringify({...sessionData, activeUser: ""}));
-    setSessionData({...sessionData, activeUser: ""});
+    const newData = {...session.sessionData, activeUser: ""};
+    session.updateSessionData(newData);
     navigate("login", {replace: true});
   };
 
