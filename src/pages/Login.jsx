@@ -1,5 +1,5 @@
-import defaultEntryValue from "../data/defaultEntryValues";
 import SessionContext from "../utils/SessionContext";
+import getIsUserExist from "../utils/getIsUserExist";
 import {useContext} from "react";
 import {useForm, Controller} from "react-hook-form";
 import {TextField, Button, Box, Typography} from "@mui/material";
@@ -17,9 +17,7 @@ export default function Login() {
 
   const onSubmit = (entryData) => {
     const role = entryData.userName;
-    const isUserExist = defaultEntryValue.some(
-      (user) => user.name === entryData.userName && user.password === entryData.password
-    );
+    const isUserExist = getIsUserExist(entryData);
 
     if (!isUserExist) {
       alert("check your data");
