@@ -1,10 +1,11 @@
 import defaultEntryValue from "../data/defaultEntryValues";
-
+import SessionContext from "../utils/SessionContext";
+import {useContext} from "react";
 import {useForm, Controller} from "react-hook-form";
 import {TextField, Button, Box, Typography} from "@mui/material";
 import {useNavigate, useLocation} from "react-router-dom";
 
-export default function Login({sessionData, setSessionData, localStorageData}) {
+export default function Login() {
   const {control, handleSubmit} = useForm({
     defaultValues: {userName: "", password: ""},
   });
@@ -12,7 +13,10 @@ export default function Login({sessionData, setSessionData, localStorageData}) {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
+  const session = useContext(SessionContext);
+
   const onSubmit = (entryData) => {
+    const role = entryData.userName;
     const isUserExist = defaultEntryValue.some(
       (user) => user.name === entryData.userName && user.password === entryData.password
     );
@@ -22,10 +26,8 @@ export default function Login({sessionData, setSessionData, localStorageData}) {
       return;
     }
 
-    const role = entryData.userName;
-    const updatedData = localStorageData ? {...localStorageData, activeUser: role} : {...sessionData, activeUser: role};
-    localStorage.setItem("sessionData", JSON.stringify(updatedData));
-    setSessionData(updatedData);
+    const updatedData = {...session.sessionData, activeUser: role};
+    session.updateSessionData(updatedData);
 
     if (from === "/" || from === "/login") {
       navigate(`/${role}`, {replace: true});
