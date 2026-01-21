@@ -23,3 +23,10 @@ tasks.txt
 *.njsproj
 *.sln
 *.sw?
+dist/
+*.d.ts
+*.d.ts.map
+*.js
+*.js.map
+!vite.config.js
+!eslint.config.js
