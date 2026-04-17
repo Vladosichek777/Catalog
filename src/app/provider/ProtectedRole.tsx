@@ -9,6 +9,7 @@ type ProtectedRoleProps = {
 
 function ProtectedRole({ role, children }: ProtectedRoleProps) {
     const session = useContext(SessionContext);
+
     if (session.sessionData.activeUser !== role) {
         return <Navigate to="/login" replace />;
     }
