@@ -6,7 +6,7 @@ import { useContext } from "react"
 import { SessionContext } from "../../../entities/sessionContext";
 import { ControllerTextField } from "../../../shared/components/ControllerTextField";
 import { handleSubmitLoginForm, } from "../model/handleSubmitLoginForm";
-import { entryDataSchema, type EntryDataSchemaType } from "../model/handleSubmitLoginForm";
+import { entryDataSchema, type EntryDataSchemaType } from "../model/entrySchema";
 
 export function Login(): React.ReactElement {
     const navigate = useNavigate();

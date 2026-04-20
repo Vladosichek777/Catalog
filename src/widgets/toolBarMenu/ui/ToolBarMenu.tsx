@@ -6,7 +6,7 @@ import Box from "@mui/material/Box";
 import { AppBar } from "@mui/material";
 import { BasketIcon } from "../../../features/basketIcon";
 import { useState, useContext } from "react";
-import getActiveUser from "../../../shared/getActiveUser";
+import getActiveUser from "../../../shared/utils/getActiveUser"
 import { SessionContext } from "../../../entities/sessionContext";
 
 type ToolBarMenuProps = {

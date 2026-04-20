@@ -1,5 +1,6 @@
 import defaultEntryValue from "./defaultEntryValues";
 import * as z from "zod";
+
 export const entryDataSchema = z
     .object({
         userName: z.enum(["admin", "user"], {
