@@ -1,4 +1,4 @@
-import { AddNewCardButton } from "../../../features/addNewCardButton/index";
+
 import { ConfirmWindow } from "../../../entities/confirmWindow/index";
 import { ProductCardDialogActions } from "../../../features/productCardDialogActions/index";
 import { Box } from "@mui/material";
@@ -9,6 +9,8 @@ import { deleteCard } from "../../../features/deleteCardButton/index";
 import { Slider } from "../../../entities/slider/index";
 import { CatalogCard } from "../../../widgets/catalogCard";
 import getActiveUser from "../../../shared/getActiveUser";
+import { Button } from "@mui/material";
+
 
 
 export function Catalog() {
@@ -73,7 +75,9 @@ export function Catalog() {
         <Box sx={{ border: "2px solid blue" }}>
 
             {isAdmin && <AddNewCardButton onClick={handleAddNewCard} />}
-
+            {isAdmin && <Button onClick={handleAddNewCard} variant="contained" size="large" color="success">
+                Add new Card
+            </Button>}
 
             <ProductCardDialogActions
                 currentEditCard={currentEditCard}

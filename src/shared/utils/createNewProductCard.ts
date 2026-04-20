@@ -1,4 +1,4 @@
-import {type FormProductCardValueType} from "./types/index";
+import {type FormProductCardValueType} from "../types/index";
 import {v4 as uuidv4} from "uuid";
 
 export function createNewProductCard(newCardData: FormProductCardValueType) {

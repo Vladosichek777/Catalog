@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react"
 import { SessionContext } from "../../../entities/sessionContext";
-import { ControllerTextField } from "../../../shared/ControllerTextField";
+import { ControllerTextField } from "../../../shared/components/ControllerTextField";
 import { handleSubmitLoginForm, } from "../model/handleSubmitLoginForm";
 import { entryDataSchema, type EntryDataSchemaType } from "../model/handleSubmitLoginForm";
 

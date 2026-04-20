@@ -1,5 +1,5 @@
 import {type FormProductCardValueType} from "../../../shared/types/index";
-import {createNewProductCard} from "../../../shared/createNewProductCard";
+import {createNewProductCard} from "../../../shared/utils/createNewProductCard";
 import {type Product} from "../../../shared/types/index";
 
 export function handleSubmitPopUpCardActions(

@@ -1,5 +1,5 @@
 import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Button } from "@mui/material";
-import { ControllerTextField } from "../../../shared/ControllerTextField";
+import { ControllerTextField } from "../../../shared/components/ControllerTextField";
 import { type FormProductCardValueType } from "../../../shared/types/index";
 import { type Control, type UseFormHandleSubmit, type SubmitHandler } from "react-hook-form";
 
