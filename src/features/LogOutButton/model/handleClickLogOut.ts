@@ -1,7 +1,8 @@
-import {type SessionContextType} from "../../../shared/types";
 import {type NavigateFunction} from "react-router-dom";
+import {useSessionStore} from "../../../app/store/sessionStore";
 
-export const handleClickLogOut = (session: SessionContextType, navigate: NavigateFunction) => {
-    session.actions.logout();
+export const handleClickLogOut = ( navigate: NavigateFunction) => {
+    const logout = useSessionStore.getState().logout;
+    logout();
     navigate("/login", {replace: true});
 };

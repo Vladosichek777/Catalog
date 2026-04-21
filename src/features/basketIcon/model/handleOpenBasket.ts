@@ -1,9 +1,10 @@
 import {type NavigateFunction} from "react-router-dom";
 import {type Location} from "react-router-dom";
-import {type SessionContextType} from "../../../shared/types";
+import {useSessionStore} from "../../../app/store/sessionStore";
 
-export const handleOpenBasket = (session: SessionContextType, navigate: NavigateFunction, location: Location) => {
+export const handleOpenBasket = (navigate: NavigateFunction, location: Location) => {
+    const activeUser = useSessionStore.getState().activeUser;
     if (location.pathname.endsWith("/basket")) return;
-    const path = `/${session.sessionData.activeUser}/basket`;
+    const path = `/${activeUser}/basket`;
     navigate(path);
 };

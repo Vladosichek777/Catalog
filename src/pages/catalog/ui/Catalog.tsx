@@ -2,28 +2,28 @@
 import { ConfirmWindow } from "../../../entities/confirmWindow/index";
 import { ProductCardDialogActions } from "../../../features/productCardDialogActions/index";
 import { Box } from "@mui/material";
-import { useState, useContext, useCallback, } from "react";
-import { SessionContext } from "../../../entities/sessionContext";
+import { useState, useCallback, } from "react";
+import { useSessionStore } from "../../../app/store/sessionStore";
 import { type Product } from "../../../shared/types";
 import { deleteCard } from "../../../features/deleteCardButton/index";
 import { Slider } from "../../../entities/slider/index";
 import { CatalogCard } from "../../../widgets/catalogCard";
-import getActiveUser from "../../../shared/utils/getActiveUser";
 import { Button } from "@mui/material";
 
 
 
 export function Catalog() {
     console.log('catalog')
-    const session = useContext(SessionContext);
-    const isAdmin = getActiveUser(session) === 'admin'
+    const availableProducts = useSessionStore((state) => state.availableProducts);
+    const basket = useSessionStore((state) => state.basket)
+    const isAdmin = useSessionStore((state) => state.activeUser === 'admin')
     const [isPopUpCardOpen, setIsPopUpCardOpen] = useState(false);
     const [isConfirmWindowOpen, setIsConfirmWindowOpen] = useState(false);
     const [currentEditCard, setCurrentEditCard] = useState<Product | null>(null);
     const [idCurrentCard, setIdCurrentCard] = useState<string | null>(null);
-    const editCard = session.actions.editCard;
-    const addNewCard = session.actions.addNewCard;
-    const deleteCardByAdmin = session.actions.deleteCardByAdmin
+    const editCard = useSessionStore((state => state.editCard))
+    const addNewCard = useSessionStore((state => state.addNewCard))
+    const deleteCardByAdmin = useSessionStore((state => state.deleteCardByAdmin))
 
     const handleCloseConfirmDeleteCard = useCallback(() => {
         setIsConfirmWindowOpen(false);
@@ -61,7 +61,7 @@ export function Catalog() {
     }, [idCurrentCard])
 
     const renderSliderCard = useCallback((card: Product) => {
-        const isInBasket: { id: string } | undefined = session.sessionData.basket.find((basketCard) => basketCard.id === card.id);
+        const isInBasket: { id: string } | undefined = basket.find((basketCard) => basketCard.id === card.id);
         return <CatalogCard
             cardInfo={card}
             isAdmin={isAdmin}
@@ -96,7 +96,7 @@ export function Catalog() {
                 handleClickAgreeBtn={clickAgreBtn}
             />
 
-            <Slider cardArr={session.sessionData.avaliableProducts} renderCard={renderSliderCard} />
+            <Slider cardArr={availableProducts} renderCard={renderSliderCard} />
 
         </Box>
     );

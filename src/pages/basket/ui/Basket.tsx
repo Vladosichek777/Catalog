@@ -1,19 +1,18 @@
 import { Slider } from "../../../entities/slider/index.ts";
 import Typography from "@mui/material/Typography";
-import { useContext } from "react";
-import { SessionContext } from "../../../entities/sessionContext/SessionContext.ts";
-import { BasketContext } from "../../../entities/basketContext/BasketContext.ts";
 import { ConfirmWindow } from "../../../entities/confirmWindow/index.ts";
 import { useState, useCallback } from "react";
 import { deleteCard } from "../../../features/deleteCardButton/index.ts";
 import { BasketCard } from "../../../widgets/basketCard/index.ts";
+import { useSessionStore } from "../../../app/store/sessionStore.ts"
 
 
 export function Basket() {
     console.log('basket')
-    const session = useContext(SessionContext);
-    const { deleteBasketCard } = useContext(BasketContext);
-    const isBasketEmpty = session.sessionData.basket.length === 0
+    const availableProducts = useSessionStore((state) => state.availableProducts);
+    const basket = useSessionStore((state) => state.basket)
+    const deleteBasketCard = useSessionStore((state) => state.deleteBasketCard)
+    const isBasketEmpty = basket.length === 0
     const [isConfirmWindowOpen, setIsConfirmWindowOpen] = useState(false);
     const [idCurrentCard, setIdCurrentCard] = useState<string | null>(null);
 
@@ -39,7 +38,7 @@ export function Basket() {
     }, [idCurrentCard])
 
     const renderSliderCard = useCallback((card: { id: string }) => {
-        const cardInfo = session.sessionData.avaliableProducts.find(
+        const cardInfo = availableProducts.find(
             (product): boolean => product.id === card.id,
         );
         return (
@@ -65,7 +64,7 @@ export function Basket() {
                 textDisagreeBtn="Disagree"
                 handleClickAgreeBtn={clickAgreBtn}
             />
-            <Slider cardArr={session.sessionData.basket} renderCard={renderSliderCard} />
+            <Slider cardArr={basket} renderCard={renderSliderCard} />
         </>
     );
 }

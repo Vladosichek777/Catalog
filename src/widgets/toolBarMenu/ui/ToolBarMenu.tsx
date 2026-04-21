@@ -5,17 +5,16 @@ import IconButton from "@mui/material/IconButton";
 import Box from "@mui/material/Box";
 import { AppBar } from "@mui/material";
 import { BasketIcon } from "../../../features/basketIcon";
-import { useState, useContext } from "react";
-import getActiveUser from "../../../shared/utils/getActiveUser"
-import { SessionContext } from "../../../entities/sessionContext";
+import { useState } from "react";
+import { useSessionStore } from "../../../app/store/sessionStore";
 
 type ToolBarMenuProps = {
     children: React.ReactNode;
 };
 
 export function ToolBarMenu({ children }: ToolBarMenuProps) {
-    const session = useContext(SessionContext);
-    const activeUser = getActiveUser(session);
+
+    const activeUser = useSessionStore((state) => state.activeUser)
     const isAdmin = activeUser === "admin";
 
     //Menu block

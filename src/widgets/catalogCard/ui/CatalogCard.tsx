@@ -1,17 +1,18 @@
-import { useState, memo, useEffect, useContext } from "react";
-import { BasketContext } from "../../../entities/basketContext";
+import { useState, memo, useEffect } from "react";
 import { Product } from "../../../entities/product";
 import { DeleteCardButton } from "../../../features/deleteCardButton/index"
 import { type CatalogCardType, } from "../../../shared/types/index";
 import { EditCardButton } from "../../../features/editCardButton";
 import { AddToBasketButton } from "../../../features/addToBasketButton";
 import { handleClickBuyButton } from "../../../features/addToBasketButton";
+import { useSessionStore } from "../../../app/store/sessionStore";
+
 
 
 
 export const CatalogCard = memo((props: CatalogCardType) => {
     console.log('catalog card')
-    const { addBasketCard } = useContext(BasketContext)
+    const addBasketCard = useSessionStore((state) => state.addBasketCard)
     const { cardInfo, isAdmin, isInBasket, deleteCard, editCard } = props;
     const { id, name, description, src } = cardInfo;
     const [statusBuyButton, setStatusBuyButton] = useState(false)

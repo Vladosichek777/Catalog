@@ -2,22 +2,21 @@ import { Box, Button, Typography } from "@mui/material";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react"
-import { SessionContext } from "../../../entities/sessionContext";
+
 import { ControllerTextField } from "../../../shared/components/ControllerTextField";
 import { handleSubmitLoginForm, } from "../model/handleSubmitLoginForm";
 import { entryDataSchema, type EntryDataSchemaType } from "../model/entrySchema";
 
 export function Login(): React.ReactElement {
     const navigate = useNavigate();
-    const session = useContext(SessionContext);
+
     const { control, handleSubmit, } = useForm<EntryDataSchemaType>({
         defaultValues: { userName: 'admin', password: '12345' },
         resolver: zodResolver(entryDataSchema)
     });
 
     const onSubmit: SubmitHandler<EntryDataSchemaType> = (entryData) => {
-        handleSubmitLoginForm(entryData, session, navigate);
+        handleSubmitLoginForm(entryData, navigate);
     };
 
     return (

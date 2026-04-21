@@ -1,6 +1,5 @@
 import { Navigate } from "react-router-dom";
-import { useContext } from "react";
-import { SessionContext } from "../../entities/sessionContext/SessionContext";
+import { useSessionStore } from "../store/sessionStore";
 
 type ProtectedRoleProps = {
     role: string;
@@ -8,9 +7,9 @@ type ProtectedRoleProps = {
 };
 
 function ProtectedRole({ role, children }: ProtectedRoleProps) {
-    const session = useContext(SessionContext);
+    const activeUser = useSessionStore((state) => state.activeUser)
 
-    if (session.sessionData.activeUser !== role) {
+    if (activeUser !== role) {
         return <Navigate to="/login" replace />;
     }
     return children;

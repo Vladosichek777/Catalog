@@ -6,13 +6,13 @@ import { Catalog } from "../pages/catalog/index";
 import { ProductPage } from "../pages/productPage/index";
 import { MainLayout } from "../pages/mainLayout";
 import ProtectedRole from "./provider/ProtectedRole";
-import SessionProvider from "./provider/SessionProvider";
+import { AuthComponent } from "./provider/Auth";
 
 function App(): React.ReactElement {
   console.log("app render ");
 
   return (
-    <SessionProvider>
+    <AuthComponent>
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path=":role" element={<MainLayout />}>
@@ -30,7 +30,8 @@ function App(): React.ReactElement {
 
         <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
-    </SessionProvider>
+    </AuthComponent>
+
   );
 }
 
